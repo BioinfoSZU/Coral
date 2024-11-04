@@ -1,0 +1,13 @@
+numpy==1.21.6
+torch==1.12.1+cu113
+ont-fast5-api==3.3.0
+biopython==1.81
+parasail==1.2
+tqdm==4.64.1
+pysam==0.19.1
+numba==0.56.4
+h5py==3.8.0
+pytorch-ranger==0.1.1
+tensorboard==2.8.0
+tensorboard-data-server==0.6.1
+tensorboardX==2.6
