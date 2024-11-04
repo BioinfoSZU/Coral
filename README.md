@@ -1,4 +1,4 @@
-## Coral: A basecaller with context-aware decoder for nanopore direct-RNA sequencing data
+## Coral: a dual context-aware basecaller for nanopore direct RNA sequencing
 
 ### Download and install
 
@@ -11,8 +11,10 @@ Coral v1.0 can be installed on Linux and has been tested on Ubuntu 22.04 with RT
 #### Install from conda
 We recommend users install Coral using [conda](https://www.anaconda.com/download/success) command, the installation typically takes around ten minutes.
 ```shell
-git clone https://github.com/BioinfoSZU/Coral.git 
+git clone https://github.com/BioinfoSZU/Coral.git
 cd Coral
+wget -P model https://zenodo.org/records/14033197/files/weights.pth.tar # download model checkpoint
+echo "c4dd28b7d72da91cfb27e944f511b851 model/weights.pth.tar" | md5sum -c --quiet  # check md5sum
 conda create -n coral python==3.7.11
 conda activate coral
 conda install -c bioconda minimap2==2.17
