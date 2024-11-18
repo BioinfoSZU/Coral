@@ -1,14 +1,14 @@
-## Coral: a dual context-aware basecaller for nanopore direct RNA sequencing
+# Coral: a dual context-aware basecaller for nanopore direct RNA sequencing
 
-### Download and install
+## Download and install
 
-#### System dependencies
+### System dependencies
 - NVIDIA driver version >= 450.80.02
 - CUDA Toolkit >= 11.3
 
 Coral v1.0 can be installed on Linux and has been tested on Ubuntu 22.04 with RTX 3090 GPU.
 
-#### Install from conda
+### Install from conda
 We recommend users install Coral using [conda](https://www.anaconda.com/download/success) command, the installation typically takes around ten minutes.
 ```shell
 git clone https://github.com/BioinfoSZU/Coral.git
@@ -21,7 +21,7 @@ conda install -c bioconda minimap2==2.17
 pip install --extra-index-url https://download.pytorch.org/whl/cu113 -r requirements.txt 
 ```
 
-### Usage
+## Usage
 - Basecaller options:
 ```text
 usage: coral.py [-h] [--prefix PREFIX] [--gpu GPU]
@@ -51,7 +51,7 @@ optional arguments:
   --version             show program's version number and exit
 ```
 
-### Example for testing basecaller
+## Example for testing basecaller
 - Run Coral with the default options to call the Fast5 test data, then align reads to the transcriptome reference 
 and calculate the read accuracy. This should be complete within a few minutes.
 ```shell
@@ -70,7 +70,7 @@ insertion (median/mean): 0.94% / 0.97%
 deletion  (median/mean): 1.70% / 1.77%
 ```
 
-### Train from scratch
+## Train from scratch
 - Before reproducing our model training, download the [training hdf5](https://zenodo.org/records/4556951/files/rna-train.hdf5?download=1) 
 and [validation hdf5](https://zenodo.org/records/4556951/files/rna-valid.hdf5?download=1) created by [RODAN](https://github.com/biodlab/RODAN) 
 and place them in the `DATASET` directory. You can also create your own HDF5 dataset, ensuring that the data structure
@@ -121,6 +121,6 @@ and then visualize the loss curve in browser using the `tensorboard` command.
 tensorboard --logdir TRAIN_OUTPUT_DIR/log --port 8080 
 ```
 
-### Copyright
+## Copyright
 Copyright 2024 Zexuan Zhu <zhuzx@szu.edu.cn>.<br>
 This project is licensed under the Apache License 2.0. See the [LICENSE](./LICENSE) file for details.
