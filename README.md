@@ -74,7 +74,7 @@ deletion  (median/mean): 1.70% / 1.77%
 - Before reproducing our model training, download the [training hdf5](https://zenodo.org/records/4556951/files/rna-train.hdf5?download=1) 
 and [validation hdf5](https://zenodo.org/records/4556951/files/rna-valid.hdf5?download=1) created by [RODAN](https://github.com/biodlab/RODAN) 
 and place them in the `DATASET` directory. You can also create your own HDF5 dataset, ensuring that the data structure
-follows the format defined in the `dataset.py`. 
+follows the format defined in the [`dataset.py`](./dataset.py). 
 
 - The opinions for the training script are provided below:
 ```text
@@ -116,10 +116,11 @@ optional arguments:
 ```shell
 python train.py DATASET_DIR TRAIN_OUTPUT_DIR
 ```
-and then visualize the loss curve using the `tensorboard` command.
+and then visualize the loss curve in browser using the `tensorboard` command.
 ```shell 
 tensorboard --logdir TRAIN_OUTPUT_DIR/log --port 8080 
 ```
 
-### License
-MIT License
+### Copyright
+Copyright 2024 Zexuan Zhu <zhuzx@szu.edu.cn>
+This project is licensed under the Apache License 2.0. See the [LICENSE](./LICENSE) file for details.
