@@ -122,5 +122,5 @@ tensorboard --logdir TRAIN_OUTPUT_DIR/log --port 8080
 ```
 
 ### Copyright
-Copyright 2024 Zexuan Zhu <zhuzx@szu.edu.cn>
+Copyright 2024 Zexuan Zhu <zhuzx@szu.edu.cn>.<br>
 This project is licensed under the Apache License 2.0. See the [LICENSE](./LICENSE) file for details.
