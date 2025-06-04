@@ -9,9 +9,9 @@
 
 Coral can be installed on Linux and has been tested on Ubuntu 22.04 with RTX 3090 GPU.
 
-### Install from docker 
-We recommend users install Coral using docker pre-built image (you should install docker with the nvidia container toolkit,
-follow the [tutorial](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html))
+### Install from Docker 
+We recommend users install Coral using the Docker pre-built image (you should install Docker with the NVIDIA Container Toolkit,
+following the [tutorial](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html))
 ```shell 
 docker pull chobits323/coral:latest
 ```
