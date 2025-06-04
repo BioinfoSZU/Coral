@@ -1,0 +1,110 @@
+{
+  "RNA002": {
+    "url": "https://zenodo.org/records/15590113/files/rna002_model.pth",
+    "md5": "6e41a6ba3e5cb0f5af10675c1ed3b9c6",
+    "path": "rna002_model.pth",
+    "chunksize": 4096,
+    "stride": 6,
+    "overlap": 1200,
+    "beam_size": 1,
+    "first_max_seq_len": 130,
+    "max_seq_len": 250,
+    "encoder_max_seq_len": 684,
+    "dim": 512,
+    "head_num": 8,
+    "kmer_len": 1,
+    "decoder_layers": 12,
+    "fusion_interval": 3,
+    "use_cross_pos_emb": true,
+    "norm_parameters": {
+      "quantile_a": 0.2,
+      "quantile_b": 0.8,
+      "shift_multiplier": 0.48,
+      "scale_multiplier": 0.59
+    },
+    "decoding_options": {
+      "qual_trim": 10,
+      "strict_region_len": 6
+    }
+  },
+  "RNA002_FAST": {
+    "url": "https://zenodo.org/records/15590113/files/rna002_fast_model.pth",
+    "md5": "480da3f5bb9dc7a2286e9c2844b7782a",
+    "path": "rna002_fast_model.pth",
+    "chunksize": 4096,
+    "stride": 6,
+    "overlap": 1200,
+    "beam_size": 1,
+    "first_max_seq_len": 26,
+    "max_seq_len": 50,
+    "encoder_max_seq_len": 684,
+    "dim": 512,
+    "head_num": 8,
+    "kmer_len": 5,
+    "decoder_layers": 12,
+    "fusion_interval": 3,
+    "use_cross_pos_emb": true,
+    "norm_parameters": {
+      "quantile_a": 0.2,
+      "quantile_b": 0.8,
+      "shift_multiplier": 0.48,
+      "scale_multiplier": 0.59
+    },
+    "decoding_options": {
+      "qual_trim": 10,
+      "strict_region_len": 6
+    }
+  },
+  "RNA004": {
+    "url": "https://zenodo.org/records/15590113/files/rna004_model.pth",
+    "md5": "ab09425e6e40bf0d35e4a00f1b5ec383",
+    "path": "rna004_model.pth",
+    "chunksize": 6000,
+    "stride": 6,
+    "overlap": 1500,
+    "beam_size": 1,
+    "first_max_seq_len": 270,
+    "max_seq_len": 390,
+    "encoder_max_seq_len": 1000,
+    "dim": 512,
+    "head_num": 8,
+    "kmer_len": 1,
+    "decoder_layers": 15,
+    "fusion_interval": 3,
+    "use_cross_pos_emb": true,
+    "norm_parameters": {
+      "mean": 80.8758975922949,
+      "stdev": 17.26975967138176
+    },
+    "decoding_options": {
+      "qual_trim": 5,
+      "strict_region_len": 0
+    }
+  },
+  "RNA004_FAST": {
+    "url": "https://zenodo.org/records/15590113/files/rna004_fast_model.pth",
+    "md5": "c86f8e832c0acf0bfa01a32af25717ba",
+    "path": "rna004_fast_model.pth",
+    "chunksize": 6000,
+    "stride": 6,
+    "overlap": 1500,
+    "beam_size": 2,
+    "first_max_seq_len": 45,
+    "max_seq_len": 65,
+    "encoder_max_seq_len": 1000,
+    "dim": 512,
+    "head_num": 8,
+    "kmer_len": 6,
+    "decoder_layers": 15,
+    "fusion_interval": 3,
+    "use_cross_pos_emb": false,
+    "norm_parameters": {
+      "mean": 80.8758975922949,
+      "stdev": 17.26975967138176
+    },
+    "decoding_options": {
+      "qual_trim": 5,
+      "strict_region_len": 6
+    }
+  }
+}
