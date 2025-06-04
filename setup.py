@@ -39,7 +39,6 @@ setup(
     },
     classifiers=[
         "Programming Language :: Python :: 3 :: Only",
-        "License :: Apache License 2.0",
         "Operating System :: Unix",
         "Topic :: Scientific/Engineering :: Bio-Informatics",
     ],
