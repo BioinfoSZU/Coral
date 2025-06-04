@@ -1,23 +1,31 @@
 # Coral: a dual context-aware basecaller for nanopore direct RNA sequencing
 
-## Download and install
+-----
 
-### System dependencies
-- NVIDIA GPU with CUDA compute capability >= 8.x, including Ampere, Ada, or Hopper GPUs (e.g., A100, RTX 3090, RTX 4090, H100)
-- NVIDIA driver version >= 450.80.02
-- CUDA Toolkit >= 11.8
+## 🚀 Download and Install
 
-Coral can be installed on Linux and has been tested on Ubuntu 22.04 with RTX 3090 GPU.
+### System Dependencies
+
+  * NVIDIA GPU with CUDA compute capability \>= 8.x (e.g., Ampere, Ada, or Hopper GPUs like A100, RTX 3090, RTX 4090, H100)
+  * NVIDIA driver version \>= 450.80.02
+  * CUDA Toolkit \>= 11.8
+
+Coral can be installed on Linux and has been tested on Ubuntu 22.04 with an RTX 3090 GPU.
 
 ### Install from Docker 
-We recommend users install Coral using the Docker pre-built image (you should install Docker with the NVIDIA Container Toolkit,
-following the [tutorial](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html))
+
+We recommend installing Coral using the pre-built Docker image. Ensure you have Docker and the NVIDIA Container Toolkit installed by 
+following this [tutorial](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html).
+
 ```shell 
 docker pull chobits323/coral:latest
 ```
 
 ### Install from conda and pip 
-Install Coral in [conda](https://www.anaconda.com/download/success) environment, the installation typically takes around 30 minutes.
+
+Alternatively, you can install Coral in a [conda](https://www.anaconda.com/download/success) environment. 
+This installation usually takes ~30 minutes.
+
 ```shell
 # create conda environment 
 conda create -n coral -c conda-forge python==3.10.16
@@ -38,18 +46,26 @@ pip install flash-attn==2.7.4.post1 --no-build-isolation
 pip install coral-call 
 ```
 
-## Usage
-### Basic 
-#### Run Coral using Docker pre-built image 
+-----
+
+## ⚙️ Usage
+
+### Basic
+
+#### Using Docker
 ```bash
 docker run --rm -it --gpus=all --ipc=host chobits323/coral:latest coral [-h] {download,basecall,train,accuracy} ...
 ```
-#### Run Coral in local conda environment 
+
+#### Using Conda Environment
+
 ```bash 
 conda activate coral
 python -m coral [-h] {download,basecall,train,accuracy} ... 
 ```
+
 #### Subcommands
+
 ```text 
 usage: python -m coral [-h] [--version] {download,basecall,train,accuracy} ...
 
@@ -67,9 +83,12 @@ options:
   --version             show program's version number and exit
 ```
 
-### Download pretrained model
-#### Download options 
-NOTE: This step is unnecessary when running by Docker pre-built image. 
+### 📥 Download Pretrained Models
+
+#### Download Options
+
+**Note:** You don't need to do this if you're using the Docker pre-built image, as it already includes the models.
+
 ```text 
 usage: python -m coral download [-h] [--list] [--all] [--model {RNA002,RNA002_FAST,RNA004,RNA004_FAST}]
 
@@ -80,6 +99,7 @@ options:
   --model {RNA002,RNA002_FAST,RNA004,RNA004_FAST}
                         Model to download
 ```
+
 #### List of available models
 
 | Model        | URL                                                                 | MD5                                |
@@ -91,7 +111,9 @@ options:
 
 
 ### Basecalling
+
 #### Basecalling options
+
 ```text
 usage: python -m coral basecall [-h] --input INPUT --output OUTPUT --kit {RNA002,RNA004} [--fast] [--gpu GPU] [--batch-size BATCH_SIZE] [--beam-size BEAM_SIZE] [--prefix PREFIX]
                                 [--seed SEED] [--no-deterministic] [--parse-fast5-meta] [--reads-file READS_FILE]
@@ -116,9 +138,11 @@ options:
                         Basecalling solely on the reads listed in file, with one ID per line (default: None)
 ```
 
-#### Example for testing basecaller
-1. Run Coral using Docker image to call the RNA002 Fast5 example data, then align reads to the transcriptome reference 
-and calculate the read accuracy. This should be complete within a few minutes.
+#### Basecalling Examples
+
+1.  **RNA002 Example (Fast5 data, Docker):** Use Docker to run Coral on the RNA002 Fast5 example data. 
+Then, align the reads to the transcriptome reference and compute the accuracy. This should be complete within a few minutes.
+
      ```shell
      docker run --rm -it --gpus=all --ipc=host -v ./example:/data chobits323/coral:latest coral basecall \
                     --input /data/rna002/fast5 \
@@ -131,7 +155,9 @@ and calculate the read accuracy. This should be complete within a few minutes.
      
      docker run --rm -it --gpus=all --ipc=host -v ./example:/data chobits323/coral:latest coral accuracy --samfile /data/rna002/output/coral.sam 
      ``` 
-     Expected output from RNA002 example data is as follows: 
+    
+     The expected output for the RNA002 example is:
+
      ```text
      Processing sample: /data/rna002/output/coral.sam
      accuracy  (median/mean): 97.43% / 96.55%
@@ -141,14 +167,17 @@ and calculate the read accuracy. This should be complete within a few minutes.
      read length  (median/mean): 863 / 914
      ```
 
-2. Run Coral in conda environment to call the RNA004 POD5 test data using the FAST model, then align reads to the
-transcriptome reference to calculate the read accuracy. This should be complete within a few minutes.  
+2.  **RNA004 Example (POD5 data, Conda):** In the conda environment, run Coral on the RNA004 POD5 test data using the FAST model. 
+Afterward, align the reads and calculate the accuracy. This should be complete within a few minutes.
+
     ```shell
     python -m coral basecall --input example/rna004/pod5/example.pod5 --output example/rna004/output --kit RNA004 --fast --beam-size 1 --prefix coral
     minimap2 --secondary=no -ax lr:hq -t 32 --eqx example/rna004/ref/ref.fa example/rna004/output/coral.fasta -o example/rna004/output/coral.sam
     python -m coral accuracy --samfile example/rna004/output/coral.sam    
     ```
-    Expected output from RNA004 example data is as follows:
+    
+    The expected output for the RNA004 example is:
+    
     ```text
     Processing sample: example/rna004/output/coral.sam
     The number of supplementary alignments in this sample is  2
@@ -160,16 +189,19 @@ transcriptome reference to calculate the read accuracy. This should be complete 
     read length  (median/mean): 727 / 931
     ```
 
-### Training 
-#### Dataset 
+### 🧠 Training
+
+#### Dataset
+
 - RNA002 training dataset can be downloaded from [training hdf5](https://emailszueducn-my.sharepoint.com/:u:/g/personal/2060271006_email_szu_edu_cn/Ee3O8i9SQflEtB8tH-JR8zUBFV5i5GK8kpvY0Keb9WA0ZA?e=0YzjZY)
 and [validation hdf5](https://emailszueducn-my.sharepoint.com/:u:/g/personal/2060271006_email_szu_edu_cn/EZ1RJWsmnhpKm4G8iZQNLO4BpHGmHqvYxK-e-3hovT9Mgw?e=VciWpU). 
 - RNA004 training dataset (partial, ~2.16 million chunks) can be downloaded from [training hdf5](https://emailszueducn-my.sharepoint.com/:u:/g/personal/2060271006_email_szu_edu_cn/Ecj7dKDoopZCkpEOms8_PqoBlbx2ANHo7i0TyUCDVZ1inw?e=PkG8W8)
 and [validation hdf5](https://emailszueducn-my.sharepoint.com/:u:/g/personal/2060271006_email_szu_edu_cn/EZPGFFZr-eRHh44jxMqqD-EBiLAN9Z_RobEStPe-uVyACg?e=k7NN4J). 
-- Place these hdf5 files in the `DATASET` directory. You can also create your own HDF5 dataset, ensuring that the data structure
+- Place these HDF5 files in the `DATASET` directory. You can also create your own HDF5 dataset, ensuring that the data structure
 follows the format defined in the [`dataset.py`](./coral/dataset.py). 
 
 #### Training options
+
 ```text
 usage: python -m coral train [-h] --data DATA --output OUTPUT [--dist-url DIST_URL] [--ngpus-per-node NGPUS_PER_NODE] [--epochs EPOCHS] [--batch-size BATCH_SIZE] [--lr LR] [--k K]
                              [--decoder-layers DECODER_LAYERS] [--monotonic-warmup-steps MONOTONIC_WARMUP_STEPS] [--pretrained-checkpoint PRETRAINED_CHECKPOINT] [--seed SEED]
@@ -195,23 +227,28 @@ options:
   --seed SEED           Random seed for deterministic training (default: 40)
 ```
 
-#### Example
-1. First train the model that predicts one base per step using cross-entropy loss only, and visualize the loss curve in browser using the `tensorboard` command.
+#### Training Examples
+
+1.  **Initial Training (k=1):** First, train the model to predict single base per step (k=1) using only cross-entropy loss. 
+You can visualize the loss curve with `tensorboard`:
     ```shell
     python -m coral train --data DATASET_DIR --output TRAIN_OUTPUT_DIR --k 1 --decoder-layers 12 
     tensorboard --logdir TRAIN_OUTPUT_DIR/log --port 8080 
     ```
-2. Load the best checkpoint from previous stage, and train the model with monotonic alignment regularization loss.
-The regularization loss is added after thousands of warmup training steps. 
+2.  **Add Monotonic Alignment Regularization:** Next, load the best checkpoint from the initial training. 
+Continue training, this time adding monotonic alignment regularization loss after thousands of warmup steps.
     ```shell
     python -m coral train --data DATASET_DIR --output TRAIN_OUTPUT_DIR_2 --k 1 --decoder-layers 12 --pretrained-checkpoint TRAIN_OUTPUT_DIR/weights/{best_epoch_checkpoint} --monotonic-warmup-steps 3000
     ```
-3. Load the best checkpoint from previous stage, and train the model predicts k (=5) consecutive bases per step with regularization loss. 
-The regularization loss is added after thousands of warmup training steps. 
+3.  **Multi-base Prediction (k=5):** Finally, load the best checkpoint from the previous training. 
+Train the model to predict *k* (e.g., 5) consecutive bases per step, again including regularization loss after thousands of warmup steps.
     ```shell
     python -m coral train --data DATASET_DIR --output TRAIN_OUTPUT_DIR_3 --k 5 --decoder-layers 12 --pretrained-checkpoint TRAIN_OUTPUT_DIR_2/weights/{best_epoch_checkpoint} --monotonic-warmup-steps 5000
     ```
 
-## Copyright
+-----
+
+## ©️ Copyright
+
 Copyright 2024 Zexuan Zhu <zhuzx@szu.edu.cn>.<br>
 This project is licensed under the Apache License 2.0. See the [LICENSE](./LICENSE) file for details.
