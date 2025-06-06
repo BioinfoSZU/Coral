@@ -250,5 +250,5 @@ Train the model to predict *k* (e.g., 5) consecutive bases per step, again inclu
 
 ## ©️ Copyright
 
-Copyright 2024 Zexuan Zhu <zhuzx@szu.edu.cn>.<br>
+Copyright 2025 Zexuan Zhu <zhuzx@szu.edu.cn>.<br>
 This project is licensed under the Apache License 2.0. See the [LICENSE](./LICENSE) file for details.
