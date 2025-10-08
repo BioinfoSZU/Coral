@@ -115,8 +115,8 @@ options:
 #### Basecalling options
 
 ```text
-usage: python -m coral basecall [-h] --input INPUT --output OUTPUT --kit {RNA002,RNA004} [--fast] [--gpu GPU] [--batch-size BATCH_SIZE] [--beam-size BEAM_SIZE] [--prefix PREFIX]
-                                [--seed SEED] [--no-deterministic] [--parse-fast5-meta] [--reads-file READS_FILE]
+usage: python -m coral basecall [-h] --input INPUT --output OUTPUT --kit {RNA002,RNA004} [--fast] [--gpu GPU] [--gpus GPUS] [--batch-size BATCH_SIZE] [--beam-size BEAM_SIZE] [--prefix PREFIX] [--seed SEED] [--no-deterministic]
+                                [--parse-fast5-meta] [--reads-file READS_FILE] [--keep-split-reads]
 
 options:
   -h, --help            show this help message and exit
@@ -126,6 +126,7 @@ options:
                         RNA002 or RNA004 sequencing kit (default: None)
   --fast                Use FAST mode that outputs k consecutive bases per step (default: False)
   --gpu GPU             GPU device id (default: 0)
+  --gpus GPUS           Comma-separated GPU device ids for multi-gpu basecalling, e.g. 0,1,2 (default: None)
   --batch-size BATCH_SIZE
                         Larger batch size will use more GPU memory (default: 500)
   --beam-size BEAM_SIZE
@@ -136,6 +137,7 @@ options:
   --parse-fast5-meta    Parse multi-fast5 meta data (default: False)
   --reads-file READS_FILE
                         Basecalling solely on the reads listed in file, with one ID per line (default: None)
+  --keep-split-reads    Keep temporary split read files (default: False)
 ```
 
 #### Basecalling Examples

@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="coral-call",
-    version="2.0",
+    version="2.1",
     description="A dual context-aware basecaller for nanopore direct RNA sequencing",
     author="ShaoHui Xie",
     author_email="2060271006@email.szu.edu.cn",
@@ -24,7 +24,7 @@ setup(
         "tensorboardX==2.6.2.2",
         "pod5==0.3.23",
         "lib-pod5==0.3.23",
-        "requests==2.32.3",
+        "requests==2.32.5",
         "packaging==24.2",
         "ninja==1.11.1.3",
         "psutil==6.1.1",
